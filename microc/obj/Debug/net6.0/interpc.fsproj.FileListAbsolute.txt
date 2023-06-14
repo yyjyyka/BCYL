@@ -1,0 +1,4 @@
+/Users/liucaixia/Desktop/BCYL/microc/obj/Debug/net6.0/interpc.fsproj.AssemblyReference.cache
+/Users/liucaixia/Desktop/BCYL/microc/obj/Debug/net6.0/interpc.AssemblyInfoInputs.cache
+/Users/liucaixia/Desktop/BCYL/microc/obj/Debug/net6.0/interpc.AssemblyInfo.fs
+/Users/liucaixia/Desktop/BCYL/microc/obj/Debug/net6.0/interpc.fsproj.CoreCompileInputs.cache

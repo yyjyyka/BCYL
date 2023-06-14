@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "xqXo99tMqROtMy654fcdnYN2lpe9fGNK7Q7S597BAL1JU9ZjxlzfS4TZvkJIl2VaJK4gLykusNGFJRb2G++FrQ==",
+  "success": true,
+  "projectFilePath": "/Users/liucaixia/Desktop/BCYL/microc/interpc.fsproj",
+  "expectedPackageFiles": [
+    "/Users/liucaixia/.nuget/packages/fsharp.core/6.0.7/fsharp.core.6.0.7.nupkg.sha512",
+    "/Users/liucaixia/.nuget/packages/fslexyacc/10.2.0/fslexyacc.10.2.0.nupkg.sha512",
+    "/Users/liucaixia/.nuget/packages/fslexyacc.runtime/10.2.0/fslexyacc.runtime.10.2.0.nupkg.sha512"
+  ],
+  "logs": []
+}

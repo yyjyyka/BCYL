@@ -174,11 +174,11 @@ let bindVar x v (env, nextloc) store : locEnv * store =
 
     //返回新环境，新的待分配位置+1，设置当前存储位置为值 v
     let ret = ((env1, nextloc + 1), setSto store nextloc v)
-    
+
     msg $"locEnv:\n {fst ret}\n"
     msg $"Store:\n {store2str (snd ret)}\n"
 
-    ret 
+    ret
 
 
 let rec bindVars xs vs locEnv store : locEnv * store =
@@ -270,6 +270,20 @@ let rec exec stmt (locEnv: locEnv) (gloEnv: gloEnv) (store: store) : store =
 
         loop store
 
+    | For (e1, e2, e3, body) -> //for循环
+        let (v1, store1) = eval e1 locEnv gloEnv store //计算初始化表达式的值，得到更新过的store1
+        //定义while循环的辅助函数 loop【这里store是更新过的store1】
+        let rec loop store1 =
+            let (v2, store2) = eval e2 locEnv gloEnv store1 //计算循环条件的值
+
+            if v2 <> 0 then // 如果循环条件不为0，就先执行函数体body，然后计算e3
+                let store3 = exec body locEnv gloEnv store2 //exec若是表达式的话，返回的就是一个更新过的store3
+                let (v3, store4) = eval e3 locEnv gloEnv store3 //计算表达式e3的值，返回更新过的store4
+                loop store4 //循环执行，传入的是store4
+            else // 如果循环条件为0，退出循环，返回环境store2
+                store2
+
+        loop store1 //循环执行
     | Expr e ->
         // _ 表示丢弃e的值,返回 变更后的环境store1
         let (_, store1) = eval e locEnv gloEnv store
