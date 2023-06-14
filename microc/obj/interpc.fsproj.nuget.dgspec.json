@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\九千岁\\Desktop\\repository\\BCYL\\microc\\interpc.fsproj": {}
   },
   "projects": {
@@ -15,13 +16,34 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\九千岁\\AppData\\Roaming\\NuGet\\NuGet.Config"
+=======
+    "/Users/liucaixia/Desktop/BCYL/microc/interpc.fsproj": {}
+  },
+  "projects": {
+    "/Users/liucaixia/Desktop/BCYL/microc/interpc.fsproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/liucaixia/Desktop/BCYL/microc/interpc.fsproj",
+        "projectName": "interpc",
+        "projectPath": "/Users/liucaixia/Desktop/BCYL/microc/interpc.fsproj",
+        "packagesPath": "/Users/liucaixia/.nuget/packages/",
+        "outputPath": "/Users/liucaixia/Desktop/BCYL/microc/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/liucaixia/.nuget/NuGet/NuGet.Config"
+>>>>>>> e748a74d5aed9af1aed4dee89b02d1e44c72aaa4
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+<<<<<<< HEAD
           "C:\\Program Files\\dotnet\\sdk\\6.0.407\\FSharp\\library-packs": {},
           "https://nuget.cdn.azure.cn/v3/index.json": {}
+=======
+          "/usr/local/share/dotnet/sdk/6.0.407/FSharp/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+>>>>>>> e748a74d5aed9af1aed4dee89b02d1e44c72aaa4
         },
         "frameworks": {
           "net6.0": {
@@ -62,7 +84,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.407\\RuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.407/RuntimeIdentifierGraph.json"
+>>>>>>> e748a74d5aed9af1aed4dee89b02d1e44c72aaa4
         }
       }
     }

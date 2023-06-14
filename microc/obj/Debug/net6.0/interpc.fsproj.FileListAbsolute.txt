@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\九千岁\Desktop\repository\BCYL\microc\bin\Debug\net6.0\interpc.exe
 C:\Users\九千岁\Desktop\repository\BCYL\microc\bin\Debug\net6.0\interpc.deps.json
 C:\Users\九千岁\Desktop\repository\BCYL\microc\bin\Debug\net6.0\interpc.runtimeconfig.json
@@ -26,3 +27,9 @@ C:\Users\九千岁\Desktop\repository\BCYL\microc\obj\Debug\net6.0\interpc.fspro
 C:\Users\九千岁\Desktop\repository\BCYL\microc\obj\Debug\net6.0\interpc.dll
 C:\Users\九千岁\Desktop\repository\BCYL\microc\obj\Debug\net6.0\interpc.pdb
 C:\Users\九千岁\Desktop\repository\BCYL\microc\obj\Debug\net6.0\interpc.genruntimeconfig.cache
+=======
+/Users/liucaixia/Desktop/BCYL/microc/obj/Debug/net6.0/interpc.fsproj.AssemblyReference.cache
+/Users/liucaixia/Desktop/BCYL/microc/obj/Debug/net6.0/interpc.AssemblyInfoInputs.cache
+/Users/liucaixia/Desktop/BCYL/microc/obj/Debug/net6.0/interpc.AssemblyInfo.fs
+/Users/liucaixia/Desktop/BCYL/microc/obj/Debug/net6.0/interpc.fsproj.CoreCompileInputs.cache
+>>>>>>> e748a74d5aed9af1aed4dee89b02d1e44c72aaa4
