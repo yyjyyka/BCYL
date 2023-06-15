@@ -39,6 +39,8 @@ and stmt =
   | Return of expr option            (* Return from method          *)
   | Block of stmtordec list          (* Block: grouping and scope   *)
   | For of expr * expr * expr * stmt                      //for循环
+  | DoWhile of stmt * expr                                //dowhile循环
+  | DoUntil of stmt * expr                                //dountil循环
   // 语句块内部，可以是变量声明 或语句的列表
 
 and stmtordec =

@@ -284,6 +284,38 @@ let rec exec stmt (locEnv: locEnv) (gloEnv: gloEnv) (store: store) : store =
                 store2
 
         loop store1 //循环执行
+
+     | DoWhile (stmt1, e) -> //dowhile循环
+        let store1=exec stmt1 locEnv gloEnv store//先执行一遍函数体body
+
+        //定义dowhile循环的辅助函数 loop
+        let rec loop store1 =
+            //计算表达式e的值，返回更新过的store2
+            let (v, store2) = eval e locEnv gloEnv store1
+            // 继续循环
+            if v <> 0 then
+                loop (exec stmt1 locEnv gloEnv store2)
+            // 退出循环，返回环境store2
+            else
+                store2
+
+        loop store1
+
+    | DoUntil (stmt1, e) -> //dountil循环
+        let store1=exec stmt1 locEnv gloEnv store//先执行一遍函数体body
+
+        //定义dountil循环的辅助函数 loop
+        let rec loop store1 =
+            //计算表达式e的值，返回更新过的store2
+            let (v, store2) = eval e locEnv gloEnv store1
+            // 退出循环，返回环境store2
+            if v <> 0 then
+                store2
+            // 继续循环
+            else
+                loop (exec stmt1 locEnv gloEnv store2)
+
+        loop store1
     | Expr e ->
         // _ 表示丢弃e的值,返回 变更后的环境store1
         let (_, store1) = eval e locEnv gloEnv store
