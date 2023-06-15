@@ -11,21 +11,21 @@ asm_main:
 	push rbp
 	mov qword [glovars], rsp
 	sub qword [glovars], 8
-	push rdx ;save asm_main args
-	push rcx
+	push rsi ;save asm_main args
+	push rdi
 	;check arg count:
 	sub rsp, 24
-	mov rdx, rcx
-	mov rcx, 0
+	mov rsi, rdi
+	mov rdi, 0
 	call checkargc
 	add rsp, 24
-	pop rcx
-	pop rdx ;pop asm_main args
+	pop rdi
+	pop rsi ;pop asm_main args
 	; allocate globals:
-
+	
 ldargs:           ;set up command line arguments on stack:
-	mov rcx, rcx
-	mov rsi, rdx
+	mov rcx, rdi
+	mov rsi, rsi
 _args_next:
 	cmp rcx, 0
 	jz _args_end
@@ -36,7 +36,7 @@ _args_next:
 _args_end:
 	lea rbp, [rsp--1*8]  ; make rbp point to first arg
 	;CALL 0,L1_main
-	push rbp
+	push rbp 
 	call near L1_main
 	push rbx
 	;STOP
@@ -44,26 +44,26 @@ _args_end:
 	add rsp, 8          ; restore rsp
 	pop rbp
 	ret
-
+	
 L1_main:
 	pop rax			; retaddr
-	pop r10			; oldbp
-	sub rsp, 16     ; make space for svm r,bp
-	mov rsi, rsp
-	mov rbp, rsp
-	add rbp, 0	   ; 8*arity
+	pop r10			; oldbp  
+	sub rsp, 16     ; make space for svm r,bp 
+	mov rsi, rsp 
+	mov rbp, rsp 
+	add rbp, 0	   ; 8*arity 
 
 _L1_main_pro_1:	  ; slide 2 stack slot
-	cmp rbp, rsi
-	jz _L1_main_pro_2
-	mov rcx, [rsi+16]
-	mov [rsi], rcx
-	add rsi, 8
-	jmp _L1_main_pro_1
+	cmp rbp, rsi      
+	jz _L1_main_pro_2    
+	mov rcx, [rsi+16] 
+	mov [rsi], rcx    
+	add rsi, 8        
+	jmp _L1_main_pro_1    
 
-_L1_main_pro_2:
-	sub rbp, 8 ; rbp pointer to first arg
-	mov [rbp+16], rax ; set retaddr
+_L1_main_pro_2: 
+	sub rbp, 8 ; rbp pointer to first arg 
+	mov [rbp+16], rax ; set retaddr 
 	mov [rbp+8], r10  ; set oldbp
 	;INCSP 1
 	lea rsp, [rsp-8*(1)]
@@ -130,8 +130,8 @@ _L1_main_pro_2:
 	;INCSP -1
 	lea rsp, [rsp-8*(-1)]
 	;PRINTI
-	pop rcx
-	push rcx
+	pop rdi
+	push rdi
 	sub rsp, 16
 	call printi
 	add rsp, 16
@@ -141,7 +141,7 @@ _L1_main_pro_2:
 	lea rsp, [rsp-8*(0)]
 	;GOTO L3
 	jmp L3
-
+	
 L2:
 	;GETBP
 	push rbp
@@ -188,8 +188,8 @@ L2:
 	;INCSP -1
 	lea rsp, [rsp-8*(-1)]
 	;PRINTI
-	pop rcx
-	push rcx
+	pop rdi
+	push rdi
 	sub rsp, 16
 	call printi
 	add rsp, 16
@@ -197,7 +197,7 @@ L2:
 	lea rsp, [rsp-8*(-1)]
 	;INCSP 0
 	lea rsp, [rsp-8*(0)]
-
+	
 L3:
 	;GETBP
 	push rbp
@@ -212,8 +212,8 @@ L3:
 	pop rax
 	mov rax,[rax]
 	push rax
-	;CSTI 4
-	push 4
+	;CSTI 3
+	push 3
 	;LT
 	pop rax
 	pop r10
@@ -235,3 +235,4 @@ L3:
 	add rsp, 8*-1
 	pop rbp
 	ret
+	

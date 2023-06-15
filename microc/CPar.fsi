@@ -12,6 +12,8 @@ type token =
   | COMMA
   | ASSIGN
   | AMP
+  | QUESMARK
+  | COLON
   | NOT
   | SEQOR
   | SEQAND
@@ -21,11 +23,26 @@ type token =
   | LT
   | GE
   | LE
+  | SELFINC
+  | SELFDEC
+  | BITLEFT
+  | BITRIGHT
+  | PLUSASSIGN
+  | MINUSASSIGN
+  | TIMESASSIGN
+  | DIVASSIGN
+  | MODASSIGN
   | PLUS
   | MINUS
   | TIMES
   | DIV
   | MOD
+  | FLOAT
+  | BOOL
+  | BITAND
+  | BITOR
+  | BITXOR
+  | BITNOT
   | CHAR
   | ELSE
   | IF
@@ -36,6 +53,18 @@ type token =
   | RETURN
   | VOID
   | WHILE
+  | FOR
+  | IN
+  | DO
+  | RANGE
+  | UNTIL
+  | SWITCH
+  | CASE
+  | BREAK
+  | MAX
+  | MIN
+  | CSTFLOAT of (float32)
+  | CSTCHAR of (char)
   | CSTSTRING of (string)
   | NAME of (string)
   | CSTINT of (int)
@@ -52,6 +81,8 @@ type tokenId =
     | TOKEN_COMMA
     | TOKEN_ASSIGN
     | TOKEN_AMP
+    | TOKEN_QUESMARK
+    | TOKEN_COLON
     | TOKEN_NOT
     | TOKEN_SEQOR
     | TOKEN_SEQAND
@@ -61,11 +92,26 @@ type tokenId =
     | TOKEN_LT
     | TOKEN_GE
     | TOKEN_LE
+    | TOKEN_SELFINC
+    | TOKEN_SELFDEC
+    | TOKEN_BITLEFT
+    | TOKEN_BITRIGHT
+    | TOKEN_PLUSASSIGN
+    | TOKEN_MINUSASSIGN
+    | TOKEN_TIMESASSIGN
+    | TOKEN_DIVASSIGN
+    | TOKEN_MODASSIGN
     | TOKEN_PLUS
     | TOKEN_MINUS
     | TOKEN_TIMES
     | TOKEN_DIV
     | TOKEN_MOD
+    | TOKEN_FLOAT
+    | TOKEN_BOOL
+    | TOKEN_BITAND
+    | TOKEN_BITOR
+    | TOKEN_BITXOR
+    | TOKEN_BITNOT
     | TOKEN_CHAR
     | TOKEN_ELSE
     | TOKEN_IF
@@ -76,6 +122,18 @@ type tokenId =
     | TOKEN_RETURN
     | TOKEN_VOID
     | TOKEN_WHILE
+    | TOKEN_FOR
+    | TOKEN_IN
+    | TOKEN_DO
+    | TOKEN_RANGE
+    | TOKEN_UNTIL
+    | TOKEN_SWITCH
+    | TOKEN_CASE
+    | TOKEN_BREAK
+    | TOKEN_MAX
+    | TOKEN_MIN
+    | TOKEN_CSTFLOAT
+    | TOKEN_CSTCHAR
     | TOKEN_CSTSTRING
     | TOKEN_NAME
     | TOKEN_CSTINT
@@ -88,6 +146,7 @@ type nonTerminalId =
     | NONTERM_Topdecs
     | NONTERM_Topdec
     | NONTERM_Vardec
+    | NONTERM_VardecAndAssign
     | NONTERM_Vardesc
     | NONTERM_Fundec
     | NONTERM_Paramdecs
@@ -96,6 +155,7 @@ type nonTerminalId =
     | NONTERM_StmtOrDecSeq
     | NONTERM_Stmt
     | NONTERM_StmtM
+    | NONTERM_CaseStmts
     | NONTERM_StmtU
     | NONTERM_Expr
     | NONTERM_ExprNotAccess
@@ -104,6 +164,8 @@ type nonTerminalId =
     | NONTERM_Exprs
     | NONTERM_Exprs1
     | NONTERM_Const
+    | NONTERM_ConstChar
+    | NONTERM_ConstFloat
     | NONTERM_Type
 /// This function maps tokens to integer indexes
 val tagOfToken: token -> int

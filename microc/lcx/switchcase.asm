@@ -11,21 +11,21 @@ asm_main:
 	push rbp
 	mov qword [glovars], rsp
 	sub qword [glovars], 8
-	push rdx ;save asm_main args
-	push rcx
+	push rsi ;save asm_main args
+	push rdi
 	;check arg count:
 	sub rsp, 24
-	mov rdx, rcx
-	mov rcx, 1
+	mov rsi, rdi
+	mov rdi, 0
 	call checkargc
 	add rsp, 24
-	pop rcx
-	pop rdx ;pop asm_main args
+	pop rdi
+	pop rsi ;pop asm_main args
 	; allocate globals:
 	
 ldargs:           ;set up command line arguments on stack:
-	mov rcx, rcx
-	mov rsi, rdx
+	mov rcx, rdi
+	mov rsi, rsi
 _args_next:
 	cmp rcx, 0
 	jz _args_end
@@ -34,8 +34,8 @@ _args_next:
 	sub rcx, 1
 	jmp _args_next      ;repeat until --ecx == 0
 _args_end:
-	lea rbp, [rsp-0*8]  ; make rbp point to first arg
-	;CALL 1,L1_main
+	lea rbp, [rsp--1*8]  ; make rbp point to first arg
+	;CALL 0,L1_main
 	push rbp 
 	call near L1_main
 	push rbx
@@ -51,7 +51,7 @@ L1_main:
 	sub rsp, 16     ; make space for svm r,bp 
 	mov rsi, rsp 
 	mov rbp, rsp 
-	add rbp, 8	   ; 8*arity 
+	add rbp, 0	   ; 8*arity 
 
 _L1_main_pro_1:	  ; slide 2 stack slot
 	cmp rbp, rsi      
@@ -65,6 +65,26 @@ _L1_main_pro_2:
 	sub rbp, 8 ; rbp pointer to first arg 
 	mov [rbp+16], rax ; set retaddr 
 	mov [rbp+8], r10  ; set oldbp
+	;INCSP 1
+	lea rsp, [rsp-8*(1)]
+	;GETBP
+	push rbp
+	;OFFSET 0
+	push -0
+	;ADD
+	pop rax
+	pop r10
+	add rax, r10
+	push rax
+	;CSTI 2
+	push 2
+	;STI
+	pop r10
+	pop rax
+	mov [rax],r10
+	push r10
+	;INCSP -1
+	lea rsp, [rsp-8*(-1)]
 	;GETBP
 	push rbp
 	;OFFSET 0
@@ -98,11 +118,11 @@ _L1_main_pro_2:
 	pop rax
 	cmp rax,0
 	je L2
-	;CSTI 10
-	push 10
+	;CSTI 1
+	push 1
 	;PRINTI
-	pop rcx
-	push rcx
+	pop rdi
+	push rdi
 	sub rsp, 16
 	call printi
 	add rsp, 16
@@ -132,11 +152,11 @@ L2:
 	pop rax
 	cmp rax,0
 	je L4
-	;CSTI 20
-	push 20
+	;CSTI 4
+	push 4
 	;PRINTI
-	pop rcx
-	push rcx
+	pop rdi
+	push rdi
 	sub rsp, 16
 	call printi
 	add rsp, 16
@@ -166,11 +186,11 @@ L4:
 	pop rax
 	cmp rax,0
 	je L6
-	;CSTI 30
-	push 30
+	;CSTI 9
+	push 9
 	;PRINTI
-	pop rcx
-	push rcx
+	pop rdi
+	push rdi
 	sub rsp, 16
 	call printi
 	add rsp, 16
@@ -188,11 +208,11 @@ L5:
 L3:
 	;INCSP -1
 	lea rsp, [rsp-8*(-1)]
-	;INCSP 0
-	lea rsp, [rsp-8*(0)]
-	;RET 0
+	;INCSP -1
+	lea rsp, [rsp-8*(-1)]
+	;RET -1
 	pop rbx
-	add rsp, 8*0
+	add rsp, 8*-1
 	pop rbp
 	ret
 	

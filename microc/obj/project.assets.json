@@ -233,46 +233,26 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\九千岁\\.nuget\\packages\\": {}
-=======
     "/Users/liucaixia/.nuget/packages/": {}
->>>>>>> e748a74d5aed9af1aed4dee89b02d1e44c72aaa4
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\九千岁\\Desktop\\repository\\BCYL\\microc\\interpc.fsproj",
-      "projectName": "interpc",
-      "projectPath": "C:\\Users\\九千岁\\Desktop\\repository\\BCYL\\microc\\interpc.fsproj",
-      "packagesPath": "C:\\Users\\九千岁\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\九千岁\\Desktop\\repository\\BCYL\\microc\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\九千岁\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
-      "projectUniqueName": "/Users/liucaixia/Desktop/BCYL/microc/interpc.fsproj",
-      "projectName": "interpc",
-      "projectPath": "/Users/liucaixia/Desktop/BCYL/microc/interpc.fsproj",
+      "projectUniqueName": "/Users/liucaixia/Desktop/microc 3/microc.fsproj",
+      "projectName": "microc",
+      "projectPath": "/Users/liucaixia/Desktop/microc 3/microc.fsproj",
       "packagesPath": "/Users/liucaixia/.nuget/packages/",
-      "outputPath": "/Users/liucaixia/Desktop/BCYL/microc/obj/",
+      "outputPath": "/Users/liucaixia/Desktop/microc 3/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/liucaixia/.nuget/NuGet/NuGet.Config"
->>>>>>> e748a74d5aed9af1aed4dee89b02d1e44c72aaa4
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-<<<<<<< HEAD
-        "C:\\Program Files\\dotnet\\sdk\\6.0.407\\FSharp\\library-packs": {},
-        "https://nuget.cdn.azure.cn/v3/index.json": {}
-=======
         "/usr/local/share/dotnet/sdk/6.0.407/FSharp/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
->>>>>>> e748a74d5aed9af1aed4dee89b02d1e44c72aaa4
       },
       "frameworks": {
         "net6.0": {
@@ -313,11 +293,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.407\\RuntimeIdentifierGraph.json"
-=======
         "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.407/RuntimeIdentifierGraph.json"
->>>>>>> e748a74d5aed9af1aed4dee89b02d1e44c72aaa4
       }
     }
   }

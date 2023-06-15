@@ -11,21 +11,21 @@ asm_main:
 	push rbp
 	mov qword [glovars], rsp
 	sub qword [glovars], 8
-	push rdx ;save asm_main args
-	push rcx
+	push rsi ;save asm_main args
+	push rdi
 	;check arg count:
 	sub rsp, 24
-	mov rdx, rcx
-	mov rcx, 0
+	mov rsi, rdi
+	mov rdi, 0
 	call checkargc
 	add rsp, 24
-	pop rcx
-	pop rdx ;pop asm_main args
+	pop rdi
+	pop rsi ;pop asm_main args
 	; allocate globals:
 	
 ldargs:           ;set up command line arguments on stack:
-	mov rcx, rcx
-	mov rsi, rdx
+	mov rcx, rdi
+	mov rsi, rsi
 _args_next:
 	cmp rcx, 0
 	jz _args_end
@@ -103,8 +103,8 @@ L2:
 	mov rax,[rax]
 	push rax
 	;PRINTI
-	pop rcx
-	push rcx
+	pop rdi
+	push rdi
 	sub rsp, 16
 	call printi
 	add rsp, 16

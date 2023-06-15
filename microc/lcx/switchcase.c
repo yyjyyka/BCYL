@@ -1,4 +1,4 @@
-//switchcase语句
+//switchcase
 void main() {
   int x=2;
   switch(x){
