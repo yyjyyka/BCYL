@@ -26,6 +26,8 @@ and expr =                           // 表达式，右值
   | Andalso of expr * expr           (* Sequential and              *)
   | Orelse of expr * expr            (* Sequential or               *)
   | Call of string * expr list       (* Function call f(...)        *)
+  | TernaryOperator of expr * expr * expr        //三目运算符 ? :
+
 
 and access =                         //左值，存储的位置
   | AccVar of string                 (* Variable access        x    *)
@@ -41,6 +43,8 @@ and stmt =
   | For of expr * expr * expr * stmt                      //for循环
   | DoWhile of stmt * expr                                //dowhile循环
   | DoUntil of stmt * expr                                //dountil循环
+  | Switch of expr * stmt list                            //switch
+  | Case of expr * stmt                                   //case
   // 语句块内部，可以是变量声明 或语句的列表
 
 and stmtordec =

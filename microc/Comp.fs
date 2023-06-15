@@ -206,6 +206,30 @@ let rec cStmt stmt (varEnv: VarEnv) (funEnv: FunEnv) : instr list =
           @ cStmt stmt1 varEnv funEnv //编译语句stmt
             @ [ Label labtest ] //test标签
               @ cExpr e varEnv funEnv @ [ IFZERO labbegin ] //编译表达式e；如果等于0跳转到begin，实现循环
+| Switch (e, stmt1) -> //switch语句
+
+        //定义辅助函数cases
+        let rec cases stmt1 =
+            match stmt1 with
+            | Case(e2, stmt2) :: stmts -> //匹配到case语句
+                // 标签要在Case里面，因为每条case的标签是不一样的
+                let labend = newLabel () //生成end标签
+                let labnext = newLabel () //生成next标签
+
+                [ DUP ]//复制一个栈顶
+                @ cExpr e2 varEnv funEnv//编译case常量表达式
+                  @ [ EQ ]//判断switch表达式和case常量表达式是否相等
+                    @ [ IFZERO labend ]//不相等，就跳转到end标签
+                      @ cStmt stmt2 varEnv funEnv //相等，就编译case中的语句
+                        @ [ GOTO labnext; Label labend ]//跳转到最后的next标签；end标签
+                          @ cases stmts//编译剩下的case语句
+                            @ [ Label labnext ]//next标签
+
+            | _ -> [] //未匹配任何case
+
+        cExpr e varEnv funEnv//编译switch表达式
+        @ cases stmt1//编译case语句
+          @ [ INCSP -1 ]//释放空间（因为复制一个栈顶元素）
 
     | Return None -> [ RET(snd varEnv - 1) ]
     | Return (Some e) -> cExpr e varEnv funEnv @ [ RET(snd varEnv) ]
@@ -258,6 +282,17 @@ and cExpr (e: expr) (varEnv: VarEnv) (funEnv: FunEnv) : instr list =
              | ">" -> [ SWAP; LT ]
              | "<=" -> [ SWAP; LT; NOT ]
              | _ -> raise (Failure "unknown primitive 2"))
+    | TernaryOperator (e1,e2,e3) -> //三目运算符
+        let labelse = newLabel () //生成else语句的标签
+        let labend = newLabel () //生成end语句的标签
+
+        cExpr e1 varEnv funEnv //计算e1表达式
+        @ [ IFZERO labelse ] //如果表达式e等于0，跳到else标签
+          @ cExpr e2 varEnv funEnv //编译e2表达式
+            @ [ GOTO labend ] //跳转到end标签
+              @ [ Label labelse ] //else标签开始的地方
+                @ cExpr e3 varEnv funEnv @ [ Label labend ] //编译e3表达式，并连上end标签，编译结束
+
     | Andalso (e1, e2) ->
         let labend = newLabel ()
         let labfalse = newLabel ()

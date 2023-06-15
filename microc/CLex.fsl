@@ -34,7 +34,8 @@ let keyword s =
     | "for"     -> FOR       //for循环
     | "do"      -> DO        //dowhile循环
     | "until"   -> UNTIL     //dountil循环
-
+    | "switch"  -> SWITCH    //switch
+    | "case"    -> CASE      //case
 // 字符串转义符处理函数
 let cEscape s =
     match s with
@@ -80,6 +81,8 @@ rule Token = parse          // 每个 规则rule 会生成为一个函数，函�
   | '<'             { LT }
   | ">="            { GE }
   | "<="            { LE }
+  | '?'             { QUESMARK }    //问号【用于三目运算符】
+  | ':'             { COLON }       //冒号【用于三目运算符】
   | "||"            { SEQOR }
   | "&&"            { SEQAND }
   | "&"             { AMP }
